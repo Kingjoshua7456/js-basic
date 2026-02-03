@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Item Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        input {
+            padding: 5px;
+        }
+        button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Add Items</h2>
+
+<input type="text" id="itemInput" placeholder="Enter item">
+<button onclick="addItem()">Add</button>
+<button onclick="clearItems()">Clear</button>
+
+<ul id="itemList"></ul>
+
+<script>
+   
+    let items = [];
+
+    function addItem() {
+        const input = document.getElementById("itemInput");
+        const item = input.value.trim();
+
+        if (item === "") {
+            alert("Please enter an item");
+            return;
+        }
+
+        items.push(item);
+
+        const li = document.createElement("li");
+        li.textContent = item;
+        document.getElementById("itemList").appendChild(li);
+
+        input.value = ""; 
+    }
+
+    function clearItems() {
+        items = [];
+        document.getElementById("itemList").innerHTML = "";
+    }
+</script>
+
+</body>
+</html>
