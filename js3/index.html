@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Total Price Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #74ebd5;
+            outline: none;
+        }
+
+        button {
+            background: #74ebd5;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #67d8c2;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2>Total Price Calculator</h2>
+
+        <input type="number" id="price" placeholder="Enter price" step="0.01">
+        <input type="number" id="tax" placeholder="Enter tax rate (%)" step="0.01">
+        <button onclick="calculateTotal()">Calculate</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let price = parseFloat(document.getElementById("price").value);
+            let taxRate = parseFloat(document.getElementById("tax").value);
+
+            if (isNaN(price) || isNaN(taxRate)) {
+                document.getElementById("result").innerText = "Please enter valid numbers!";
+                return;
+            }
+
+            let total = price + (price * taxRate / 100);
+            document.getElementById("result").innerText = "Total price with tax: $" + total.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
+
