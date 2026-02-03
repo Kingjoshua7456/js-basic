@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Simple Form</h2>
+
+<form onsubmit="return validateForm()">
+    <label>
+        Name:
+        <input type="text" id="name">
+    </label>
+    <br>
+    <span id="nameError" class="error"></span>
+    <br><br>
+
+    <label>
+        Email:
+        <input type="text" id="email">
+    </label>
+    <br>
+    <span id="emailError" class="error"></span>
+    <br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function validateForm() {
+    let isValid = true;
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+
+    
+    nameError.textContent = "";
+    emailError.textContent = "";
+
+    if (name === "") {
+        nameError.textContent = "Name is required.";
+        isValid = false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email === "") {
+        emailError.textContent = "Email is required.";
+        isValid = false;
+    } else if (!emailPattern.test(email)) {
+        emailError.textContent = "Enter a valid email address.";
+        isValid = false;
+    }
+
+    return isValid;
+}
+</script>
+
+</body>
+</html>
+
